@@ -8,6 +8,7 @@ import java.time.Duration;
 import org.apache.xmlbeans.impl.xb.xsdschema.ListDocument.List;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,16 +16,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.Iterator;
 import ar.com.holistorsaas.Base;
+import ar.com.holistorsaas.adaptacion.BaseTest;
 import net.bytebuddy.asm.Advice.Return;
 
-public class HomePageHolistorSYJ{
-	Base base;
+public class HomePageHolistorSYJ extends BaseTest {
+	//Base base;
 	
 	By syjAplicacion = By.xpath("//img[@src='/assets/common/images/holistor/SYJ-logo.png']");	
 	
 
-	public HomePageHolistorSYJ(Base base) {
-		this.base = base;
+	public HomePageHolistorSYJ(WebDriver base) {
+		super(base);
 		// TODO Auto-generated constructor stub
 	}
 	public boolean openSYJ() throws InterruptedException {
@@ -32,10 +34,10 @@ public class HomePageHolistorSYJ{
 		
 		By pageSYJLocator = By.xpath("//img[@src='Resources/ImgLogoSyJ_GRA_Home.png']");
 		
-		String mainHandle = base.getNameActive(base.driver);
+		String mainHandle = this.getNameActive();
 
-		System.out.println("SYJ: " + base.driver.findElement(syjAplicacion).isDisplayed());
-		base.driver.findElement(syjAplicacion).click();
+		System.out.println("SYJ: " + this.findElement(syjAplicacion).isDisplayed());
+		this.findElement(syjAplicacion).click();
 		
 	
 		System.out.println("id " + base.switchPage(mainHandle, base.driver));
